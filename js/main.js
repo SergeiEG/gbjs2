@@ -86,7 +86,7 @@ class CartList {
     renderCartList() {
         this.cartBlock = document.querySelector(this.container);
         this.cartBlock.addEventListener('click', event => this.delGoods(event))
-        this.cartBlock.innerHTML = '';
+        this.cartBlock.innerHTML = ' ';
 
         for (const product of this.goods) {
             const productObject = new CartItem(product);
@@ -101,7 +101,7 @@ class CartList {
         this.cartBlock.appendChild(cartEmptyBtn);
         cartEmptyBtn.addEventListener('click', this.dropCart.bind(this));
 
-        this.cartBlock.insertAdjacentHTML('beforeend', `<br> В корзине всего товара на ${this.countCartPrise()} \u20bd.`);
+        this.cartBlock.insertAdjacentHTML('beforeend', `<br> В корзине всего товара на ${this.countCartPrise(this.goods)} \u20bd.`);
     }
 
     dropCart() {
@@ -124,8 +124,8 @@ class CartList {
         this.cartBlock.textContent = 'Корзина пуста.';
     }
 
-    countCartPrise() {
-        return this.goodsObjects.reduce((totalPrice, item) => totalPrice += item.quantity * item.price, 0);
+    countCartPrise(arr) {
+        return arr.reduce((totalPrice, item) => totalPrice += item.quantity * item.price, 0);
     }
 
 }
