@@ -27,17 +27,28 @@ class ProductsList {
         this.goods = [];
         this.goodsObjects = [];
 
-        this._fetchGoods();
-        this.render();
+        // this._fetchGoods();
+        this.getProducts().then((data) => {
+            this.goods = data;
+            this.render();
+        });
     }
 
-    _fetchGoods() {
-        getRequest(`${API}/catalogData.json`)
-            .then((data) => {
-                console.log(data);
-                this.goods = JSON.parse(data);
-                this.render();
-                console.log(this.goods);
+    // _fetchGoods() {
+    //     getRequest(`${API}/catalogData.json`)
+    //         .then((data) => {
+    //             console.log(data);
+    //             this.goods = JSON.parse(data);
+    //             this.render();
+    //             console.log(this.goods);
+    //         });
+    // }
+
+    getProducts() {
+        return fetch(`${API}/catalogData.json`)
+            .then(response => response.json())
+            .catch((error) => {
+                console.log(error);
             });
     }
 
@@ -55,7 +66,7 @@ class ProductsList {
 
 class ProductItem {
     constructor(item, img = 'https://dummyimage.com/200x150/404040/c8c8d9.jpg') {
-        this.id = item.id;
+        this.id = item.id_product;
         this.title = item.product_name;
         this.price = item.price;
         this.img = img;
