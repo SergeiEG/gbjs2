@@ -41,6 +41,9 @@ class ProductsList {
     //             this.goods = JSON.parse(data);
     //             this.render();
     //             console.log(this.goods);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
     //         });
     // }
 
@@ -89,23 +92,30 @@ const catalog = new ProductsList();
 class CartList {
     constructor(container = '.cart') {
         this.container = container;
-        this.goods = [];
-        this.goodsObjects = [];
+        this.goods = {};
+        this.goodsObjects = {};
         this.cartBlock = null;
 
-        this.fetchGoods();
-        this.render();
+        this._fetchGoods();
+        // this.getProducts().then((data) => {
+        //     this.goods = data;
+        //     this.render();
+        // });
     }
 
 
 
-    fetchGoods() {
-        this.goods = [
-            { id: 1, title: 'Notebook', price: 20000, quantity: 1 },
-            { id: 2, title: 'Mouse', price: 1500, quantity: 2 },
-            { id: 3, title: 'Keyboard', price: 5000, quantity: 3 },
-            { id: 4, title: 'Gamepad', price: 4500, quantity: 4 },
-        ];
+    _fetchGoods() {
+        getRequest(`${API}/getBasket.json`)
+            .then((data) => {
+                console.log(data);
+                this.goods = JSON.parse(data);
+                this.render();
+                console.log(this.goods);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     getCartListLength() {
@@ -165,11 +175,11 @@ class CartList {
 
 class CartItem {
     constructor(item, img = 'https://dummyimage.com/100x100/383638/bfbfc7') {
-        this.id = item.id;
-        this.title = item.title;
-        this.price = item.price;
+        this.id = item.contents.id_product;
+        this.title = item.contents.product_name;
+        this.price = item.contents.price;
         this.img = img;
-        this.quantity = item.quantity;
+        this.quantity = item.contents.quantity;
     }
 
     getHTMLString() {
