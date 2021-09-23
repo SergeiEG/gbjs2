@@ -112,9 +112,24 @@ p {
 }
 
 .cart {
-    max-width: 400px;
+    width: 350px;
     position: absolute;
     right: 0;
+}
+
+.open {
+    display: block;
+}
+
+.close {
+    display: none;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
 }
 
 .cart-item {
@@ -122,6 +137,7 @@ p {
     justify-content: left;
     max-width: 300px;
     margin: 10px 0;
+    border: 1px solid #c0c0c040;
 }
 
 .info {

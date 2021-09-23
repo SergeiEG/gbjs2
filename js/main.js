@@ -64,6 +64,29 @@ class ProductsList {
 
             block.insertAdjacentHTML('beforeend', productObject.getHTMLString())
         }
+
+        const cartBtn = document.querySelector('.btn-cart')
+        cartBtn.addEventListener('click', () => cart.getOpenCartBlock());
+
+        block.addEventListener('click', event => this.addProductsToCart(event));
+    }
+
+    addProductsToCart(event) {
+        fetch(`${API}/addToBasket.json`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.result === 1) {
+                    if (!event.target.classList.contains('buy-btn')) return;
+                    const id_product = +event.target.dataset.id;
+                    const addGood = this.goods.find((product) => product.id_product === id_product);
+                    cart.addToBasket(addGood);
+
+                    console.log(addGood);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 }
 
@@ -81,7 +104,7 @@ class ProductItem {
                   <div class="desc">
                       <h3>${this.title}</h3>
                       <p>${this.price} \u20bd</p>
-                      <button class="buy-btn">Купить</button>
+                      <button class="buy-btn" data-id="${this.id}">Купить</button>
                   </div>
                 </div>`;
     }
@@ -93,33 +116,42 @@ class CartList {
     constructor(container = '.cart') {
         this.container = container;
         this.goods = {};
-        this.goodsObjects = {};
+        this.goodsObjects = [];
         this.cartBlock = null;
 
-        this._fetchGoods();
-        // this.getProducts().then((data) => {
-        //     this.goods = data;
-        //     this.render();
-        // });
+        // this._fetchGoods();
+        this.getGoods().then((data) => {
+            this.goods = data;
+            this.render();
+        });
     }
 
 
 
-    _fetchGoods() {
-        getRequest(`${API}/getBasket.json`)
-            .then((data) => {
-                console.log(data);
-                this.goods = JSON.parse(data);
-                this.render();
-                console.log(this.goods);
-            })
+    // _fetchGoods() {
+    //     getRequest(`${API}/getBasket.json`)
+    //         .then((data) => {
+    //             console.log(data);
+    //             this.cartObj = JSON.parse(data);
+    //             this.goods = this.cartObj.contents;
+    //             this.render();
+    //             console.log(this.goods);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }
+
+    getGoods() {
+        return fetch(`${API}/getBasket.json`)
+            .then(response => response.json())
             .catch((error) => {
                 console.log(error);
             });
     }
 
     getCartListLength() {
-        return this.goods.length;
+        return this.goods.contents.length;
     }
 
     render() {
@@ -128,14 +160,22 @@ class CartList {
 
     renderCartList() {
         this.cartBlock = document.querySelector(this.container);
-        this.cartBlock.addEventListener('click', event => this.delGoods(event))
         this.cartBlock.innerHTML = ' ';
+        this.goodsObjects = [];
 
-        for (const product of this.goods) {
+        const close = document.createElement('div');
+        this.cartBlock.appendChild(close);
+        close.classList.add('close-btn')
+        close.insertAdjacentHTML('afterbegin', '&#10060');
+        close.addEventListener('click', this.getCloseCart.bind(this));
+
+        this.cartBlock.addEventListener('click', event => this.delGoods(event));
+
+        for (const product of this.goods.contents) {
             const productObject = new CartItem(product);
             this.goodsObjects.push(productObject);
 
-            this.cartBlock.insertAdjacentHTML('beforeend', productObject.getHTMLString())
+            this.cartBlock.insertAdjacentHTML('beforeend', productObject.getHTMLString());
         }
 
         const cartEmptyBtn = document.createElement('button');
@@ -144,22 +184,46 @@ class CartList {
         this.cartBlock.appendChild(cartEmptyBtn);
         cartEmptyBtn.addEventListener('click', this.dropCart.bind(this));
 
-        this.cartBlock.insertAdjacentHTML('beforeend', `<br> В корзине всего товара на ${this.countCartPrise(this.goods)} \u20bd.`);
+        this.cartBlock.insertAdjacentHTML('beforeend', `<br> Кол-во товара в корзине: ${this.goods.countGoods}.
+        <br>Общей суммой: ${this.countCartPrise(this.goodsObjects)} \u20bd.`);
     }
 
     dropCart() {
-        this.goods = [];
-        this.render();
+        fetch(`${API}/deleteFromBasket.json`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.result === 1) {
+                    this.goods.contents = [];
+                    this.goodsObjects = [];
+                    this.render();
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     delGoods(event) {
-        if (!event.target.classList.contains('del')) return;
-        const id_product = +event.target.dataset.id;
-        const delGood = this.goods.findIndex((product) => product.id === id_product);
-        if (delGood !== -1) this.goods.splice(delGood, 1);
+        fetch(`${API}/deleteFromBasket.json`)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.result === 1) {
+                    if (!event.target.classList.contains('del')) return;
+                    const id_product = +event.target.dataset.id;
+                    const delGood = this.goods.contents.findIndex((product) => product.id_product === id_product);
+                    if (delGood !== -1) this.goods.contents.splice(delGood, 1);
 
-        console.log(delGood);
-        this.render();
+                    console.log(delGood);
+                    this.render();
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    countCartPrise(arr) {
+        return arr.reduce((totalPrice, item) => totalPrice += item.quantity * item.price, 0);
     }
 
     renderEmptyCart() {
@@ -167,19 +231,38 @@ class CartList {
         this.cartBlock.textContent = 'Корзина пуста.';
     }
 
-    countCartPrise(arr) {
-        return arr.reduce((totalPrice, item) => totalPrice += item.quantity * item.price, 0);
+    addToBasket(product) {
+        if (product) {
+            const findInBasket = this.goods.contents.find((item) => product.id_product === item.id_product);
+            if (findInBasket) {
+                findInBasket.quantity++;
+            } else {
+                this.goods.contents.push({...product, quantity: 1 });
+            }
+            this.render();
+        } else {
+            alert('Ошибка добавления!');
+        }
     }
 
+    getOpenCartBlock() {
+        this.cartBlock.classList.remove('close');
+        this.cartBlock.classList.add('open');
+    }
+
+    getCloseCart() {
+        this.cartBlock.classList.remove('open');
+        this.cartBlock.classList.add('close');
+    }
 }
 
 class CartItem {
     constructor(item, img = 'https://dummyimage.com/100x100/383638/bfbfc7') {
-        this.id = item.contents.id_product;
-        this.title = item.contents.product_name;
-        this.price = item.contents.price;
+        this.id = item.id_product;
+        this.title = item.product_name;
+        this.price = item.price;
         this.img = img;
-        this.quantity = item.contents.quantity;
+        this.quantity = item.quantity;
     }
 
     getHTMLString() {
@@ -191,7 +274,7 @@ class CartItem {
                       <p>Количество: ${this.quantity}</p>
                       <p>Общая цена: ${this.quantity * this.price} \u20bd</p>
                   </div>
-                  <span class="del" data-id="${this.id}">&#10060</span>
+                  <span class="del" data-id="${this.id}">&#128939</span>
                 </div>`;
     }
 }
