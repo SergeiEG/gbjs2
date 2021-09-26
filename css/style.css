@@ -1,0 +1,46 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    width: 150px;
+    margin: 0 10px 20px 10px;
+    justify-content: center;
+}
+
+.tel {
+    width: 150px;
+    margin: 0 10px 20px 10px;
+}
+
+.mail {
+    width: 150px;
+    margin: 0 10px 20px 10px;
+}
+
+.area {
+    width: 200px;
+    margin: 0 10px 20px 10px;
+}
+
+.btn {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 10px 20px 10px;
+}
+
+h4 {
+    margin: 0 0 20px 10px;
+}
+
+input:invalid {
+    border: 1px solid red;
+}
+
+.conteiner {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}

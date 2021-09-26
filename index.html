@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <form action="#" class="send-form">
+            <div class="conteiner">
+                <h4 class="name-header">Имя:</h4>
+                <input type="name" class="name" placeholder="Иван" pattern="^[a-zA-Z]+$|^[А-Яа-яЁё]+$">
+            </div>
+            <div class="conteiner">
+                <h4 class="tel-header">Телефон:</h4>
+                <input type="tel" class="tel" placeholder="+7(000)000-0000" pattern="[\+]7[\(]\d{3}[\)]\d{3}[\-]\d{4}">
+            </div>
+            <div class="conteiner">
+                <h4 class="mail-header">Еmail:</h4>
+                <input type="email" class="mail" placeholder="mymail@mail.ru" pattern="my[\.\-]?mail@mail.ru">
+            </div>
+            <div class="conteiner">
+                <h4 class="area-header">text:</h4>
+                <textarea name="text" class="area" id="area" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" class="btn">
+        </form>
+    </main>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
