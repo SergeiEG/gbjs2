@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="container">
+                <div class="header-menu">
+                    <div class="logo">Интернет-магазин</div>
+                    <div class="cart">
+                        <form action="#" class="search-form">
+                            <input type="text" v-model="searchLine" class="search-field">
+                            <button class="btn-search" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                        <button class="btn-cart" @click="isVisibleCart = !isVisibleCart" type="button">Корзина</button>
+                        <div :class="{invisible: !isVisibleCart, 'cart-block': isVisibleCart}">
+                            <div v-if="cart.length === 0">Нет данных.</div>
+                            <div class="cart-item" v-for="item of cart">
+                                <div class="product-bio">
+                                    <img :src="imgCart" alt="Some image">
+                                    <div class="product-desc">
+                                        <p class="product-title">{{item.product_name}}</p>
+                                        <p class="product-quantity">{{item.quantity}}</p>
+                                        <p class="product-single-price">{{item.price}}</p>
+                                    </div>
+                                </div>
+                                <div class="right-block">
+                                    <p class="product-price">{{item.quantity * item.price}}</p>
+                                    <button class="del-btn">&times;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="products">
+                    <div v-if="products.length === 0">Нет данных.</div>
+                    <div class="product-item" v-for="product of filterGoods()" :key="product.id_product">
+                        <img :src="imgCatalog" alt="Some img">
+                        <div class="desc">
+                            <h3>{{product.product_name}}</h3>
+                            <p>{{product.price}}₽</p>
+                            <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
