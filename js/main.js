@@ -4,9 +4,13 @@ const app = new Vue({
     el: '#app',
     data: {
         catalogUrl: '/catalogData.json',
+        cartUrl: '/getBasket.json',
         products: [],
         imgCatalog: 'https://via.placeholder.com/200x150',
         searchLine: '',
+        imgCart: 'https://via.placeholder.com/50x100',
+        cart: [],
+        isVisibleCart: true,
     },
     methods: {
         getJson(url) {
@@ -32,6 +36,10 @@ const app = new Vue({
         this.getJson(`${API + this.catalogUrl}`)
             .then(data => {
                 this.products = data;
+            });
+        this.getJson(`${API + this.cartUrl}`)
+            .then(data => {
+                this.cart = data.contents;
             });
     },
     beforeMount() {
