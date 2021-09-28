@@ -4,35 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <header>
-
-    </header>
-    <main>
-        <form action="#" class="send-form">
-            <div class="conteiner">
-                <h4 class="name-header">Имя:</h4>
-                <input type="name" class="name" placeholder="Иван" pattern="^[a-zA-Z]+$|^[А-Яа-яЁё]+$">
+    <div id="app">
+        <header>
+            <div class="logo">Интернет-магазин</div>
+            <div class="cart">
+                <form action="#" class="search-form">
+                    <input type="text" v-model="searchLine" class="search-field">
+                    <button class="btn-search" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+                </form>
+                <button class="btn-cart" type="button">Корзина</button>
             </div>
-            <div class="conteiner">
-                <h4 class="tel-header">Телефон:</h4>
-                <input type="tel" class="tel" placeholder="+7(000)000-0000" pattern="[\+]7[\(]\d{3}[\)]\d{3}[\-]\d{4}">
+        </header>
+        <main>
+            <div class="products">
+                <div class="product-item" v-for="product of filterGoods()" :key="product.id_product">
+                    <img :src="imgCatalog" alt="Some img">
+                    <div class="desc">
+                        <h3>{{product.product_name}}</h3>
+                        <p>{{product.price}}₽</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                    </div>
+                </div>
             </div>
-            <div class="conteiner">
-                <h4 class="mail-header">Еmail:</h4>
-                <input type="email" class="mail" placeholder="mymail@mail.ru" pattern="my[\.\-]?mail@mail.ru">
-            </div>
-            <div class="conteiner">
-                <h4 class="area-header">text:</h4>
-                <textarea name="text" class="area" id="area" cols="30" rows="10"></textarea>
-            </div>
-            <input type="submit" class="btn">
-        </form>
-    </main>
-    <script src="./js/main.js"></script>
+        </main>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
