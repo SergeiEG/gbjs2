@@ -1,0 +1,79 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        background: #EFF0F1;
+        &__item {
+            display: flex;
+            margin: 15px 0;
+            cursor: pointer;
+            & div {
+                display: flex;
+                &:first-child {
+                    margin-right: 100px;
+                }
+            }
+            & p {
+                margin-left: 10px;
+                @include text(normal, 14px, 17px, #676767);
+                &:hover {
+                    color: #1b1b1b;
+                }
+            }
+        }
+    }
+    &-bottom {
+        display: flex;
+        justify-content: space-between;
+        & a {
+            text-decoration: none;
+        }
+        &__item {
+            display: flex;
+            @include text(245px, 50px, 61px, #2B2A2A);
+            align-items: center;
+            margin: 10px 0 20px 0;
+            &--blue {
+                color: #3C39D0;
+            }
+            & div {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                &:first-child {
+                    margin-right: 110px;
+                }
+                & img {
+                    width: 30px;
+                    height: 30px;
+                }
+                & h2 {
+                    @include text(bold, 16px, 20px, #2B2A2A);
+                    margin-left: 10px;
+                    &:hover {
+                        color: #6b6a6a;
+                    }
+                }
+            }
+        }
+    }
+    & hr {
+        border: 1px solid #DDDDDD;
+    }
+}
+
+.cart-btn {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    & svg {
+        fill: #4945FF;
+    }
+    &:hover svg {
+        fill: red;
+    }
+}

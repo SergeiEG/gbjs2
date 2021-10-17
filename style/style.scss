@@ -1,0 +1,16 @@
+@import "block/vars";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+section {
+    padding: 0 calc(50vw - 785px);
+}
+
+@import "block/header";

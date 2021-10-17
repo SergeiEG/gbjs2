@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+section {
+  padding: 0 calc(50vw - 785px);
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.header-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: #EFF0F1;
+}
+
+.header-top__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.header-top__item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header-top__item div:first-child {
+  margin-right: 100px;
+}
+
+.header-top__item p {
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #676767;
+}
+
+.header-top__item p:hover {
+  color: #1b1b1b;
+}
+
+.header-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header-bottom a {
+  text-decoration: none;
+}
+
+.header-bottom__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-style: normal;
+  font-weight: 245px;
+  font-size: 50px;
+  line-height: 61px;
+  color: #2B2A2A;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 0 20px 0;
+}
+
+.header-bottom__item--blue {
+  color: #3C39D0;
+}
+
+.header-bottom__item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.header-bottom__item div:first-child {
+  margin-right: 110px;
+}
+
+.header-bottom__item div img {
+  width: 30px;
+  height: 30px;
+}
+
+.header-bottom__item div h2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B2A2A;
+  margin-left: 10px;
+}
+
+.header-bottom__item div h2:hover {
+  color: #6b6a6a;
+}
+
+.header hr {
+  border: 1px solid #DDDDDD;
+}
+
+.cart-btn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.cart-btn svg {
+  fill: #4945FF;
+}
+
+.cart-btn:hover svg {
+  fill: red;
+}
+/*# sourceMappingURL=style.css.map */
