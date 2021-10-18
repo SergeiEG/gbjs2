@@ -51,6 +51,10 @@ section {
   margin-right: 100px;
 }
 
+.header-top__item div a {
+  text-decoration: none;
+}
+
 .header-top__item p {
   margin-left: 10px;
   font-style: normal;
@@ -146,5 +150,114 @@ section {
 
 .cart-btn:hover svg {
   fill: red;
+}
+
+.intro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 50px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.intro-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.intro-left__header h1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 46px;
+  line-height: 50px;
+  color: #2B2A2A;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.intro-left__header h3 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: #343434;
+  margin-bottom: 45px;
+}
+
+.intro-left__advantage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 720px;
+}
+
+.intro-left__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 350px;
+}
+
+.intro-left__item:not(:nth-last-child(-n+2)) {
+  margin-bottom: 30px;
+}
+
+.intro-left__item div:first-child {
+  margin-right: 10px;
+}
+
+.intro-left__item div h4 {
+  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: #2B2A2A;
+}
+
+.intro-left__item div p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: #676767;
+}
+
+.intro-left a {
+  max-width: 218px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 25px 34px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#716FFF), to(#4945FF));
+  background: linear-gradient(180deg, #716FFF 0%, #4945FF 100%);
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+  margin: 50px 0;
+}
+
+.intro-left a:hover {
+  background: #FFFFFF;
+  color: #4945FF;
+  border: 2px solid #4945FF;
+}
+
+.fa-cogs {
+  color: #4945FF;
 }
 /*# sourceMappingURL=style.css.map */
