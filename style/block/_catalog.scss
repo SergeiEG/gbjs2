@@ -1,0 +1,13 @@
+.catalog {
+    background-color: #E5E5E5;
+    padding-top: 70px;
+    padding-bottom: 75px;
+    & h1 {
+        @include text(bold, 40px, 50px, #2B2A2A);
+        text-transform: capitalize;
+        margin-left: 20px;
+    }
+    &__item {
+        margin-top: 50px;
+    }
+}
