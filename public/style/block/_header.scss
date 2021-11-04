@@ -67,16 +67,44 @@
     }
 }
 
-.cart-btn {
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    & svg {
-        fill: #4945FF;
+.cart {
+    display: flex;
+    position: relative;
+    &-btn {
+        border: none;
+        cursor: pointer;
+        outline: none;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        & svg {
+            fill: #4945FF;
+        }
+        &:hover svg {
+            fill: red;
+        }
     }
-    &:hover svg {
-        fill: red;
+    &-block {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);
+        border-radius: 5px;
+        box-sizing: border-box;
+        right: 0;
+        top: 130%;
+        position: absolute;
+        background-color: white;
+        padding: 20px;
+        color: black;
+        width: 300px;
+        @include text(normal, 16px, 20px, #2B2A2A);
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -10px;
+            right: 35px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+        }
     }
 }
