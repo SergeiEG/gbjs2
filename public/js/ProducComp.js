@@ -1,22 +1,22 @@
 Vue.component('products', {
-    data(){
+    data() {
         return {
             catalogUrl: '',
             products: [],
             filtered: [],
-            imgCatalog: 'https://via.placeholder.com/200x150',
+            imgCatalog: 'https://dummyimage.com/300x200/e0e0e0/404beb.jpg',
         }
     },
     methods: {
-        filter(value){
+        filter(value) {
             let regexp = new RegExp(value, 'i');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
-    mounted(){
+    mounted() {
         this.$parent.getJson('/api/products')
             .then(data => {
-                for(let el of data){
+                for (let el of data) {
                     this.products.push(el);
                     this.filtered.push(el);
                 }
@@ -33,12 +33,16 @@ Vue.component('product', {
 
     template: `
     <div class="product-item">
-                <img :src="img" alt="Some img">
+        <div class="card__item">
+            <img :src="img" alt="Some img">
+            <div class="card__overlay">
+                <button class="buy-btn" @click="$root.$refs.cart.addProduct(product)">Купить</button>
+            </div>
+        </div>
                 <div class="desc">
                     <h3>{{product.product_name}}</h3>
                     <p>{{product.price}}₽</p>
-                    <button class="buy-btn" @click="$root.$refs.cart.addProduct(product)">Купить</button>
-<!-- 2                    <button class="buy-btn" @click="$parent.$parent.$refs.cart.addProduct(product)">Купить</button>-->
+                    <a href="#">Узнать больше</a>
                 </div>
             </div>
     `
