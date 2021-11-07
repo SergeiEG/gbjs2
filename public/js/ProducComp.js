@@ -1,15 +1,40 @@
-Vue.component('products', {
+const product = {
+    props: ['product', 'img'],
     data() {
         return {
-            catalogUrl: '',
+            cartAPI: this.$root.$refs.cart,
+        };
+    },
+
+    template: `
+    <div class="product-item">
+        <div class="card__item">
+            <img :src="img" alt="Some img">
+            <div class="card__overlay">
+                <button class="buy-btn" @click="cartAPI.addProduct(product)">Купить</button>
+            </div>
+        </div>
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}}₽</p>
+                    <a href="#">Узнать больше</a>
+                </div>
+            </div>
+    `
+};
+
+const products = {
+    components: { product },
+    data() {
+        return {
             products: [],
             filtered: [],
             imgCatalog: 'https://dummyimage.com/300x200/e0e0e0/404beb.jpg',
         }
     },
     methods: {
-        filter(value) {
-            let regexp = new RegExp(value, 'i');
+        filter(userSearch) {
+            let regexp = new RegExp(userSearch, 'i');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
@@ -24,26 +49,9 @@ Vue.component('products', {
     },
     template: `
         <div class="products">
-            <product ref="refref" v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
+            <product v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
         </div>
     `
-});
-Vue.component('product', {
-    props: ['product', 'img'],
+};
 
-    template: `
-    <div class="product-item">
-        <div class="card__item">
-            <img :src="img" alt="Some img">
-            <div class="card__overlay">
-                <button class="buy-btn" @click="$root.$refs.cart.addProduct(product)">Купить</button>
-            </div>
-        </div>
-                <div class="desc">
-                    <h3>{{product.product_name}}</h3>
-                    <p>{{product.price}}₽</p>
-                    <a href="#">Узнать больше</a>
-                </div>
-            </div>
-    `
-});
+export default products;

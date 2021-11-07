@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
     target: 'web',
     entry: {
-        main: ["@babel/polyfill", "./public/index.js"]
+        main: ["@babel/polyfill", "./public/index.js"],
     },
     output: {
         path: path.join(__dirname, 'dist/public'),
@@ -13,25 +14,21 @@ module.exports = {
         filename: "js/[name].js",
         assetModuleFilename: "assets/img/[name].[hash][ext]"
     },
-    devServer: {
-        port: 8080,
-        host: 'localhost',
-        historyApiFallback: true,
-        hot: true,
-        proxy: {
-            '/api': {
-                target: 'http://localhost:3000/',
-                secure: false
-            }
-        }
-    },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html',
-            filename: 'index.html',
-            excludeChunks: ['server']
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, './public/index.html') }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css'
         }),
     ],
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true
+            }),
+        ]
+    },
     module: {
         rules: [{
                 test: /\.js$/,
@@ -39,14 +36,17 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /\.html$/,
-                use: [{
-                    loader: "html-loader"
-                }]
-            },
-            {
                 test: /\.(?:|gif|png|jpg|svg)$/,
                 type: 'asset/resource',
+            },
+            {
+                test: /\.html$/,
+                use: [{
+                    loader: "html-loader",
+                    options: {
+                        minimize: true
+                    }
+                }]
             },
             {
                 test: /\.mp(3|4)$/,
@@ -57,7 +57,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
         ]
     },
