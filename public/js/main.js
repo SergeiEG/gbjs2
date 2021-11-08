@@ -3,7 +3,7 @@ import products from './ProducComp'
 import search from './FilterComp'
 import error from './ErrorComp'
 
-const app = {
+const appMain = {
     el: '#app',
     components: {
         cart,
@@ -58,4 +58,4 @@ const app = {
     },
 };
 
-export default app;
+export default appMain;

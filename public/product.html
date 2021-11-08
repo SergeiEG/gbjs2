@@ -56,17 +56,21 @@
 
     <main>
         <section class="item-place">
-            <h1></h1>
-            <div>
-                <div>
+            <h1>{{product.product_name}}</h1>
+            <div class="item-description">
+                <div class="item-description__foto">
+                    <img src="" alt="img">
                 </div>
-                <div>
-
+                <div class="item-description__text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, aut, quod provident corrupti ad magni maxime fugit odit repellat at recusandae! Iste, nisi. Ratione error ad laudantium adipisci, quaerat modi.</p>
+                    <p>Цена: {{product.price}}₽</p>
+                    <button class="buy-btn">Купить</button>
                 </div>
             </div>
-            <div>
+            <hr>
+            <div class="item-characteristics">
                 <h4>Характеристики:</h4>
-                <p>Модель: </p>
+                <p>Модель: {{product.product_name}}</p>
                 <p>Основной цвет: </p>
                 <p>Ширина: </p>
                 <p>Высота: </p>
