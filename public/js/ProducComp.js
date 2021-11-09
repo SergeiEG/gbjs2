@@ -1,3 +1,6 @@
+import search from './FilterComp'
+import error from './ErrorComp'
+
 const product = {
     props: ['product', 'img'],
     data() {
@@ -24,7 +27,7 @@ const product = {
 };
 
 const products = {
-    components: { product },
+    components: { product, search, error },
     data() {
         return {
             products: [],
@@ -48,9 +51,16 @@ const products = {
             });
     },
     template: `
-        <div class="products">
-            <product v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
+    <section class="catalog">
+        <h1>Каталог в наличии</h1>
+        <search></search>
+        <div id="catalog" class="catalog__item">
+            <div class="products">
+                <product v-for="item of filtered" :key="item.id_product"    :img="imgCatalog" :product="item"></product>
+            </div>
+            <error ref="error"></error>
         </div>
+    </section>
     `
 };
 
