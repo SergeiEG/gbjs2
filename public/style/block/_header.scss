@@ -35,10 +35,12 @@
         }
         &__item {
             display: flex;
+            cursor: pointer;
             @include text(245px, 50px, 61px, #2B2A2A);
             align-items: center;
             margin: 10px 0 20px 0;
             &--blue {
+                cursor: pointer;
                 color: #3C39D0;
             }
         }

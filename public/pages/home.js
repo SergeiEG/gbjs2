@@ -51,9 +51,8 @@ const home = {
                     </div>
                 </div>
             </div>
-            <router-link tag="a" to="/catalog">
-                Перейти в каталог
-            </router-link>
+            <a href="#catalog">Перейти в каталог</a>  
+                
         </div>
         <div class="intro-right">
             <img src="img/book.jpg" alt="notebook">

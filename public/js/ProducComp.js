@@ -1,5 +1,4 @@
-import search from './FilterComp'
-import error from './ErrorComp'
+import search from "./FilterComp";
 
 const product = {
     props: ['product', 'img'],
@@ -20,14 +19,18 @@ const product = {
                 <div class="desc">
                     <h3>{{product.product_name}}</h3>
                     <p>{{product.price}}₽</p>
-                    <a href="#">Узнать больше</a>
+                    <router-link to="/good"  :image="img" :good="product" custom v-slot="{ navigate }">
+                        <span @click="navigate" @keypress.enter="navigate" role="link">
+                        Узнать больше  
+                        </span>
+                    </router-link>
                 </div>
             </div>
     `
 };
 
 const products = {
-    components: { product, search, error },
+    components: { product, search },
     data() {
         return {
             products: [],
@@ -42,7 +45,7 @@ const products = {
         }
     },
     mounted() {
-        this.$parent.getJson('/api/products')
+        this.$root.getJson('/api/products')
             .then(data => {
                 for (let el of data) {
                     this.products.push(el);
@@ -51,14 +54,13 @@ const products = {
             });
     },
     template: `
-    <section class="catalog">
+    <section ref="products" class="catalog">
         <h1>Каталог в наличии</h1>
-        <search></search>
+        <router-view></router-view>
         <div id="catalog" class="catalog__item">
             <div class="products">
                 <product v-for="item of filtered" :key="item.id_product"    :img="imgCatalog" :product="item"></product>
             </div>
-            <error ref="error"></error>
         </div>
     </section>
     `
