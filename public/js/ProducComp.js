@@ -19,7 +19,8 @@ const product = {
                 <div class="desc">
                     <h3>{{product.product_name}}</h3>
                     <p>{{product.price}}₽</p>
-                    <router-link to="/good"  :image="img" :good="product" custom v-slot="{ navigate }">
+                    <router-link 
+                    :to="{ name: 'good', params: {id: product.id_product, item: product}}" custom v-slot="{ navigate }">
                         <span @click="navigate" @keypress.enter="navigate" role="link">
                         Узнать больше  
                         </span>
@@ -59,7 +60,7 @@ const products = {
         <router-view></router-view>
         <div id="catalog" class="catalog__item">
             <div class="products">
-                <product v-for="item of filtered" :key="item.id_product"    :img="imgCatalog" :product="item"></product>
+                <product v-for="item of filtered" :key="item.id_product"  :img="imgCatalog" :product="item"></product>
             </div>
         </div>
     </section>

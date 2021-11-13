@@ -60,6 +60,9 @@ const cart = {
                     });
             }
         },
+        navigate() {
+            this.$router.push({ name: 'cart', params: { items: this.cartItems } });
+        }
     },
     mounted() {
         this.$parent.getJson('/api/cart')
@@ -85,6 +88,7 @@ const cart = {
                 :img="imgCart"
                 @remove="remove">
                 </cart-item>
+                <button class="btn-cart" @click="navigate"> Перейти в корзину</button>
             </div>
         </div>`
 };

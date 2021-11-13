@@ -1,16 +1,22 @@
 import cart from './CartComp'
 import products from './ProducComp'
 import error from './ErrorComp'
+import productPage from '../pages/productPage'
+import cartPage from '../pages/cartPage'
 import VueRouter from 'vue-router'
 import router from '../router'
 
+
 Vue.use(VueRouter)
+
 const appMain = new Vue({
     el: '#app',
     components: {
         cart,
         products,
-        error
+        error,
+        productPage,
+        cartPage
     },
     router,
     methods: {

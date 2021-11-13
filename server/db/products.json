@@ -1,22 +1,41 @@
-[
-  {
-    "id_product": 124,
-    "product_name": "Keyboard",
-    "price": 1600
-  },
-  {
-    "id_product": 457,
-    "product_name": "Gamepad",
-    "price": 3000
-  },
-  {
-    "id_product": 123,
-    "product_name": "Ноутбук",
-    "price": 45600
-  },
-  {
-    "id_product": 456,
-    "product_name": "Мышка",
-    "price": 1000
-  }
+[{
+        "id_product": 124,
+        "product_name": "Keyboard",
+        "price": 1600,
+        "color": "black",
+        "width": 40,
+        "height": 3,
+        "length": 15,
+        "weight": 400
+    },
+    {
+        "id_product": 457,
+        "product_name": "Gamepad",
+        "price": 3000,
+        "color": "grey",
+        "width": 8,
+        "height": 5,
+        "length": 6,
+        "weight": 150
+    },
+    {
+        "id_product": 123,
+        "product_name": "Ноутбук",
+        "price": 45600,
+        "color": "white",
+        "width": 40,
+        "height": 5,
+        "length": 20,
+        "weight": 500
+    },
+    {
+        "id_product": 456,
+        "product_name": "Мышка",
+        "price": 1000,
+        "color": "red",
+        "width": 4,
+        "height": 3,
+        "length": 5,
+        "weight": 100
+    }
 ]

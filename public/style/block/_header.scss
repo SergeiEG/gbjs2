@@ -136,3 +136,19 @@
         font-size: 0.7em;
     }
 }
+
+.btn-cart {
+    margin-top: 5px;
+    background-color: #4945FF;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    color: #fafafa;
+    border-radius: 5px;
+    transition: all ease-in-out .4s;
+    cursor: pointer;
+    &:hover {
+        background-color: #fafafa;
+        color: #4945FF;
+        border: 1px solid #4945FF;
+    }
+}
