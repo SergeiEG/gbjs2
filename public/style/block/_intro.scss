@@ -1,0 +1,63 @@
+.intro {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+    &-left {
+        display: flex;
+        flex-direction: column;
+        &__header {
+            & h1 {
+                @include text(bold, 46px, 50px, #2B2A2A);
+                text-transform: capitalize;
+                margin-bottom: 20px;
+            }
+            & h3 {
+                @include text(normal, 20px, 30px, #343434);
+                margin-bottom: 45px;
+            }
+        }
+        &__advantage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 720px;
+        }
+        &__item {
+            display: flex;
+            max-width: 350px;
+            &:not(:nth-last-child(-n+2)) {
+                margin-bottom: 30px;
+            }
+            & div:first-child {
+                margin-right: 10px;
+            }
+            & div h4 {
+                margin-bottom: 10px;
+                @include text(600, 15px, 18px, #2B2A2A);
+            }
+            & div p {
+                @include text(normal, 14px, 22px, #676767);
+            }
+        }
+        & a {
+            max-width: 218px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 25px 34px;
+            background: linear-gradient(180deg, #716FFF 0%, #4945FF 100%);
+            border-radius: 10px;
+            @include text(500, 14px, 17px, #FFFFFF);
+            margin: 50px 0;
+            &:hover {
+                background: #FFFFFF;
+                color: #4945FF;
+                border: 2px solid #4945FF;
+            }
+        }
+    }
+}
+
+.fa-cogs {
+    color: #4945FF;
+}

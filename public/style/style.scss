@@ -1,0 +1,28 @@
+@import "block/vars";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+section {
+    padding: 0 calc(50vw - 785px);
+}
+
+@import "block/header";
+@import "block/intro";
+@import "block/catalog";
+@import "block/advantage";
+@import "block/footer";
+@import "block/item";
+@import "block/cart"

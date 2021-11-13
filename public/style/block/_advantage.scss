@@ -1,0 +1,47 @@
+.advantage {
+    background-color: #F7F7F8;
+    padding-top: 70px;
+    padding-bottom: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h1 {
+        @include text(bold, 40px, 50px, #2B2A2A);
+        text-transform: capitalize;
+        text-align: center;
+        max-width: 653px;
+        margin-bottom: 20px;
+    }
+    &-wrap {
+        display: grid;
+        grid-template-columns: repeat(4, 370px);
+        grid-gap: 30px;
+    }
+    & hr {
+        position: absolute;
+        border: 2px solid rgba(73, 69, 255, 0.6);
+        width: 1110px;
+        margin-top: 150px;
+        margin-left: 260px;
+        z-index: 1;
+    }
+    &__item h4 {
+        @include text(600, 18px, 22px, #4945FF);
+        margin-bottom: 10px;
+    }
+    &__item--grey {
+        background-color: #E5E5E5;
+        padding: 30px 30px 20px 30px;
+        height: 200px;
+        border-radius: 0px 40px;
+        z-index: 5;
+        position: relative;
+        & h5 {
+            @include text(500, 16px, 24px, #000000);
+            margin-bottom: 15px;
+        }
+        & p {
+            @include text(normal, 14px, 22px, #676767);
+        }
+    }
+}
